@@ -1,6 +1,7 @@
 package net.priv.main;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {	
@@ -24,18 +25,26 @@ public class Main {
 			drawTable();
 			
 			System.out.println("Write the line number:");
-			int y = anykey.nextInt();
-			System.out.println("Write the column number:");
-			int x = anykey.nextInt();
 			
-			if(table[x][y] == '-') {
-				if((t+1)%2 != 0) {
-					table[x][y] = symbols[0];
+			int y = tryParse(anykey.nextLine());
+			
+			System.out.println("Write the column number:");
+			
+			int x = tryParse(anykey.nextLine());
+			
+			if(y < 2 && y >= 0 && x < 2 && x >= 0) {
+				if(table[x][y] == '-') {
+					if((t+1)%2 != 0) {
+						table[x][y] = symbols[0];
+					}else {
+						table[x][y] = symbols[1];
+					}
 				}else {
-					table[x][y] = symbols[1];
+					System.out.println("This space ["+x+"]["+y+"] is already being used");
+					t--;
 				}
 			}else {
-				System.out.println("This space ["+x+"]["+y+"] is already being used");
+				System.out.println("Invalid number. Try again.");
 				t--;
 			}
 			
@@ -46,6 +55,14 @@ public class Main {
 		}
 		
 		if(!checkWinner(table))tieGame();
+	}
+	
+	public static Integer tryParse(String input) {
+	  try {
+	    return Integer.parseInt(input);
+	  } catch (NumberFormatException e) {
+		return 3;
+	  }
 	}
 	
 	public void endGame() {
