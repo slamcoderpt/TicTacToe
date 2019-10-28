@@ -1,7 +1,6 @@
 package net.priv.main;
 
 import java.io.IOException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {	
@@ -72,7 +71,7 @@ public class Main {
 		}else {
 			System.out.println("Player 2 won the game!");
 		}
-		System.out.println("Press Enter to play again!");
+		System.out.println("Press Enter to play again or close the terminal to endgame!");
 		try {
 			System.in.read();
 		} catch (IOException e) {
@@ -86,7 +85,7 @@ public class Main {
 		System.out.println("GAME OVER!!!!");
 		System.out.println("I GUESS THIS IS A TIE!");
 		System.out.println("Try again!");
-		System.out.println("Press Enter!");
+		System.out.println("Press Enter to continue or close the terminal to endgame!");
 		try {
 			System.in.read();
 		} catch (IOException e) {
